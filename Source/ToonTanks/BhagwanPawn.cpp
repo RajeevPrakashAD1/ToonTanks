@@ -46,7 +46,9 @@ void ABhagwanPawn::RotateTurret(FVector Target) {
 
 void ABhagwanPawn::Fire() {
 
-	DrawDebugSphere(GetWorld(),ProjectileSpawnPoint->GetComponentLocation(), 10, 0, FColor::Red,false,3.f);
+	FVector Location = ProjectileSpawnPoint->GetComponentLocation();
+	FRotator Rotation = ProjectileSpawnPoint->GetComponentRotation();
+	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
 }
 
 

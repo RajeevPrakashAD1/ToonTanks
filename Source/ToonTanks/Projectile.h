@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Projectile.generated.h"
 
+#include <GameFramework/ProjectileMovementComponent.h>
+#include "Projectile.generated.h"
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
 {
@@ -22,6 +23,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+private:
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* ProjectileMesh;
+	UPROPERTY(EditAnywhere)
+	UProjectileMovementComponent* movement;
 };
