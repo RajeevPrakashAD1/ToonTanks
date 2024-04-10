@@ -17,7 +17,7 @@ void ATower::Tick(float DeltaTime) {
 			//rotate
 			RotateTurret(tank->GetActorLocation());
 			//shoot
-			//hello
+			
 		}
 	}
 
