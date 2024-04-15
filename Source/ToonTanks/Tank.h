@@ -17,11 +17,13 @@ class TOONTANKS_API ATank : public ABhagwanPawn
 public:
 	ATank();
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void HandleDestruction();
 
 
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	APlayerController* PlayerControllerRef;
 
 protected:
 	// Called when the game starts or when spawned
@@ -42,5 +44,5 @@ private:
 	float RotationSpeed = 45.f;
 	void Turn(float Value);
 
-	APlayerController* PlayerControllerRef;
+	
 };

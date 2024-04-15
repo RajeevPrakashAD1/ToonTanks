@@ -68,8 +68,15 @@ void ATank::Move(float Value) {
 
 void ATank::Turn(float Value) {
 
-	UE_LOG(LogTemp, Warning, TEXT("value %f"), Value);
+	//UE_LOG(LogTemp, Warning, TEXT("value %f"), Value);
 	FRotator DeltaRotation = FRotator::ZeroRotator;
 	DeltaRotation.Yaw = Value * RotationSpeed * UGameplayStatics::GetWorldDeltaSeconds(this);
 	AddActorLocalRotation(DeltaRotation, true);
+}
+
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	SetActorHiddenInGame(true);
+	SetActorTickEnabled(false);
 }

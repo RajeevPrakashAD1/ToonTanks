@@ -15,6 +15,7 @@ class TOONTANKS_API ABhagwanPawn : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ABhagwanPawn();
+	void HandleDestruction();
 
 
 protected:
@@ -39,4 +40,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class AProjectile> ProjectileClass;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class AProjectile> ProjectileClass2;
 };

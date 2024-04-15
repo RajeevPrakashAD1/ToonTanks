@@ -2,6 +2,7 @@
 
 
 #include "Projectile.h"
+#include <Kismet/GameplayStatics.h>
 
 // Sets default values
 AProjectile::AProjectile()
@@ -11,6 +12,8 @@ AProjectile::AProjectile()
 	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
 	RootComponent = ProjectileMesh;
 	movement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("movement"));
+	movement->MaxSpeed = 3000;
+	movement->InitialSpeed = 2500;
 
 
 }
@@ -19,7 +22,8 @@ AProjectile::AProjectile()
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	UE_LOG(LogTemp, Warning, TEXT("setting up ad dynamics"));
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }
 
 // Called every frame
@@ -29,3 +33,20 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
+void AProjectile::OnHit(UPrimitiveComponent* HitComp,AActor* otherActor,UPrimitiveComponent* OtherComp,FVector NormalImpule,const FHitResult& Hit)
+{
+
+	UE_LOG(LogTemp, Warning, TEXT("Onhit"));
+	auto MyOwner = GetOwner();
+	if (MyOwner == nullptr) return;
+	auto instigator =  MyOwner->GetInstigatorController();
+	auto DamageTypeClass = UDamageType::StaticClass();
+
+	if (otherActor && otherActor != this && otherActor != MyOwner) {
+		UGameplayStatics::ApplyDamage(otherActor, Damage, instigator, this, DamageTypeClass);
+		Destroy();
+	}
+	
+	//ApplyDamage()
+
+}

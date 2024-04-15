@@ -15,6 +15,7 @@ class TOONTANKS_API ATower : public ABhagwanPawn
 	GENERATED_BODY()
 public:
 	virtual void Tick(float DeltaTime) override;
+	void HandleDestruction();
 	
 protected:
 	// Called when the game starts or when spawned

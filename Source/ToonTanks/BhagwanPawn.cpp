@@ -48,7 +48,11 @@ void ABhagwanPawn::Fire() {
 
 	FVector Location = ProjectileSpawnPoint->GetComponentLocation();
 	FRotator Rotation = ProjectileSpawnPoint->GetComponentRotation();
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
+	auto projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass2, Location, Rotation);
+	projectile->SetOwner(this);
 }
 
-
+void ABhagwanPawn::HandleDestruction()
+{
+	//do something effects
+}

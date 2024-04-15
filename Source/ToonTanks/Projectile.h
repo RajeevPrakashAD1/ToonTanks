@@ -28,4 +28,15 @@ private:
 	class UStaticMeshComponent* ProjectileMesh;
 	UPROPERTY(EditAnywhere)
 	UProjectileMovementComponent* movement;
+
+	UPROPERTY(EditAnywhere)
+	float Damage = 20.f;
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComp,
+		AActor* otherActor,
+		UPrimitiveComponent* OtherComp,
+		FVector NormalImpule,
+		const FHitResult& Hit
+	);
 };
