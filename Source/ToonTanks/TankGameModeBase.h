@@ -17,8 +17,13 @@ public:
 	void ActorDied(AActor* DeadActor);
 protected:
 	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool bWonGame);
 private:
 	class ATankPlayerController* TankPlayerCtrl;
 	float StartDelay = 3.f;
 	void HandleGameStart();
+	int32 NumOfTowers = 4;
 };

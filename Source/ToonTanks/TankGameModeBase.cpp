@@ -19,11 +19,16 @@ void ATankGameModeBase::ActorDied(AActor* DeadActor)
 		{
 			TankPlayerCtrl->SetPlayerEnabledState(false);
 		}
+		GameOver(false);
 			
 	}
 	else if (ATower* DestroyedTower = Cast<ATower>(DeadActor))
 	{
 		DestroyedTower->HandleDestruction();
+		NumOfTowers--;
+		if (NumOfTowers <= 0) {
+			GameOver(true);
+		}
 	}
 }
 
@@ -37,6 +42,7 @@ void ATankGameModeBase::HandleGameStart()
 {
 
 	TankPlayerCtrl = Cast<ATankPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+	StartGame();
 	if (TankPlayerCtrl)
 	{
 		TankPlayerCtrl->SetPlayerEnabledState(false);

@@ -20,9 +20,13 @@ ABhagwanPawn::ABhagwanPawn()
 
 	BaseMesh->SetupAttachment(CapsuleComp);
 	TurretMesh->SetupAttachment(BaseMesh);
+
+	
 	
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile Spawn Point"));
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
+
+	
 
 
 }
@@ -55,4 +59,7 @@ void ABhagwanPawn::Fire() {
 void ABhagwanPawn::HandleDestruction()
 {
 	//do something effects
+	if(DeathParticles)
+	UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticles,GetActorLocation(),GetActorRotation());
+	if (DeathSound) UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
 }

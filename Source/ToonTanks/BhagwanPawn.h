@@ -42,4 +42,10 @@ private:
 	TSubclassOf<class AProjectile> ProjectileClass;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class AProjectile> ProjectileClass2;
+
+	UPROPERTY(EditAnyWhere)
+	class UParticleSystem* DeathParticles;
+	UPROPERTY(EditAnyWhere)
+	class USoundBase* DeathSound;
+
 };

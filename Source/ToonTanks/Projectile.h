@@ -32,6 +32,15 @@ private:
 	UPROPERTY(EditAnywhere)
 	float Damage = 20.f;
 
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* HitEffect;
+	UPROPERTY(EditAnywhere)
+	USoundBase* HitSound;
+	UPROPERTY(EditAnywhere)
+	USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere)
+	class UParticleSystemComponent* TrailParticles;
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp,
 		AActor* otherActor,
